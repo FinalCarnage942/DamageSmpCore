@@ -2,3 +2,10 @@ name: DamageSmpCore
 version: '1.0-SNAPSHOT'
 main: org.damagesmpcore.damageSmpCore.DamageSmpCore
 api-version: '1.21'
+commands:
+  damagepercent:
+    description: Shows your current damage percentage or reloads config.
+    usage: /damage [reload]
+    aliases: [dp, damage]
+
+

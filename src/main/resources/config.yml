@@ -1,0 +1,9 @@
+damage:
+  kill:
+    min: 1.0         # Minimum % gain per kill
+    max: 3.5         # Maximum % gain per kill
+  death:
+    min_loss: 10.0   # Minimum % lost on death
+    max_loss: 30.0   # Maximum % lost on death
+
+  max_percent: 100.0 # Max damage % a player can reach
