@@ -1,27 +1,38 @@
 package org.damagesmpcore.damageSmpCore;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.UUID;
+import java.io.File;
+import java.io.IOException;
 
 public final class DamageSmpCore extends JavaPlugin {
-
-    private DamageManager damageManager;
+    private File configFile;
+    private FileConfiguration config;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        damageManager = new DamageManager(this);
-        this.getCommand("damagepercent").setExecutor(new DamageCommand(damageManager, this));
+        configFile = new File(getDataFolder(), "config.yml");
+        config = YamlConfiguration.loadConfiguration(configFile);
+
+        getServer().getPluginManager().registerEvents(new DamageManager(this), this);
+        DamageCommand cmd = new DamageCommand(this);
+        getCommand("damage").setExecutor(cmd);
+
+        getLogger().info("DamageSmpCore enabled.");
     }
 
     @Override
     public void onDisable() {
-        for (UUID uuid : damageManager.getAllPlayerData().keySet()) {
-            double percent = damageManager.getPlayerStrength(uuid);
-            getConfig().set("players." + uuid.toString(), percent);
-        }
-        saveConfig();
+        getLogger().info("DamageSmpCore disabled.");
     }
 
+
+    public void reloadPluginConfig() {
+        reloadConfig();
+        getLogger().info("config.yml reloaded.");
+    }
 }
+
