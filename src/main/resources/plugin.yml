@@ -1,0 +1,4 @@
+name: DamageSmpCore
+version: '1.0-SNAPSHOT'
+main: org.damagesmpcore.damageSmpCore.DamageSmpCore
+api-version: '1.21'
