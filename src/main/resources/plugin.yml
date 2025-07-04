@@ -3,7 +3,7 @@ main: org.damagesmpcore.damageSmpCore.DamageSmpCore
 version: 1.0.0
 api-version: 1.17
 description: Dynamic PvP damage boost on kill / penalty on death.
-author: FinalCarnage942
+authors: [ FinalCarnage942 , Qssaf ]
 
 commands:
   damage:
