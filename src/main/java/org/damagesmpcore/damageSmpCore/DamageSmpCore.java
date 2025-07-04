@@ -7,6 +7,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
@@ -59,7 +60,7 @@ public final class DamageSmpCore extends JavaPlugin {
         recipe.shape("GDG", "DHD", "GDG");
         recipe.setIngredient('G', Material.GOLD_BLOCK);
         recipe.setIngredient('D', Material.DIAMOND);
-        recipe.setIngredient('H', Material.FERMENTED_SPIDER_EYE);
+        recipe.setIngredient('H', new RecipeChoice.ExactChoice(new ItemStack(Material.FERMENTED_SPIDER_EYE)));
         recipe.setGroup("heart_items");
         recipe.setCategory(CraftingBookCategory.MISC);
 
