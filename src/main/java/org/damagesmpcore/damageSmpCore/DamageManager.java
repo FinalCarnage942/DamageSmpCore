@@ -110,7 +110,7 @@ public class DamageManager implements Listener {
 
         if (meta.getPersistentDataContainer().has(DamageSmpCore.heartkey)) {
             Player player = e.getPlayer();
-            if (Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).getValue() < 20.0) { // Check if player can gain a heart
+            if (Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).getValue() < 40.0) { // Check if player can gain a heart
                 player.sendMessage(Component.text("§cYou have earned a heart!"));
                 AttributeInstance healthAttribute = player.getAttribute(Attribute.MAX_HEALTH);
                 assert healthAttribute != null;
