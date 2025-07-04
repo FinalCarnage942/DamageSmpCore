@@ -110,15 +110,18 @@ public class DamageManager implements Listener {
 
         if (meta.getPersistentDataContainer().has(DamageSmpCore.heartkey)) {
             Player player = e.getPlayer();
+            if (Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).getValue() < 20.0) { // Check if player can gain a heart
+                player.sendMessage(Component.text("§cYou have earned a heart!"));
+                AttributeInstance healthAttribute = player.getAttribute(Attribute.MAX_HEALTH);
+                assert healthAttribute != null;
+                healthAttribute.setBaseValue(healthAttribute.getValue() + 2.0);
+                item.setAmount(item.getAmount() - 1); // Consume 1 heart
 
-            player.sendMessage(Component.text("§cYou feel your health surge!"));
-            AttributeInstance healthAttribute = player.getAttribute(Attribute.MAX_HEALTH);
-            assert healthAttribute != null;
-            healthAttribute.setBaseValue(healthAttribute.getValue() + 2.0);
-
-
-            item.setAmount(item.getAmount() - 1); // Consume 1 heart
-            e.setCancelled(true); // Cancel normal eating behavior
+                e.setCancelled(true); // Cancel normal eating behavior
+            } else {
+                player.sendMessage(Component.text("§cYou have reached the maximum amount of hearts!"));
+                e.setCancelled(true); // Cancel normal eating behavior
+            }
         }
     }
 
